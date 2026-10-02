@@ -1,0 +1,1 @@
+Helsingin yliopiston Tietokantojen perusteet-kurssin juttuja
