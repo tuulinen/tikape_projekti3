@@ -1,0 +1,33 @@
+#set up sqlite into codespace 
+$ rm -f testi.db testi.db-wal testi.dp-shm
+sqlite3 testi.dbsqlite3 testi.db
+#Create table
+CREATE TABLE Test (x INTEGER);
+INSERT INTO Test (x) VALUES (1);
+
+.quit
+
+#Testi 4
+K1: BEGIN;
+K1: UPDATE Test SET x = 2;
+
+K2: BEGIN;
+K2: UPDATE Test SET x = 2;
+K2: SELECT x FROM Test;
+K2: COMMIT;
+
+K1: SELECT x FROM Test;
+K1: COMMIT;
+
+#Testi 5
+
+K1: BEGIN;
+K1: SELECT x FROM Test;
+
+K2: BEGIN;
+K2: SELECT x FROM Test;
+K2: UPDATE Test SET x = 2;
+K2: COMMIT;
+
+K1: UPDATE Test SET x = 2;
+K1: COMMIT;
